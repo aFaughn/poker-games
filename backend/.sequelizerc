@@ -1,0 +1,11 @@
+// Tells Sequelize to look in config/database.js for configs
+// Also sets the routes for seeders, migrations, and models into a 'db' folder.
+
+const path = require('path');
+
+module.exports = {
+  config: path.resolve('config', 'database.js'),
+  'models-path': path.resolve('db', 'models'),
+  'seeders-path': path.resolve('db', 'seeders'),
+  'migrations-path': path.resolve('db', 'migrations'),
+};
