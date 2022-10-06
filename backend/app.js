@@ -41,3 +41,9 @@ app.use(
         },
     })
 );
+
+//Point to the routes file for app
+const routes = require('./routes')
+app.use(routes)
+
+module.exports = app;
