@@ -22,3 +22,26 @@ const setTokenCookie = (res, user) => {
 
     return token;
 };
+
+const restoreUser = (req,res,next) => {
+    //token parsed from cookies
+    const { token } = req.cookies;
+
+    return jwt.verify(token, secret, null, async (err, jwtPayload) => {
+        if (err) {
+            return next();
+        }
+
+        try {
+            const { id } = jwtPayload.data;
+            req.user = await User.scope('currentUser').findByPk(id);
+        } catch (e) {
+            res.clearCookie('token');
+            return next();
+        }
+
+        if (!req.user) res.clearCookie('token');
+
+        return next();
+    })
+}
