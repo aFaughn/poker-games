@@ -2,3 +2,6 @@ node_modules
 .env
 build
 .DS_Store
+part-1-backend.md
+part-2-frontend.md
+part-3-deploy.md
